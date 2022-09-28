@@ -6,6 +6,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MenuItem extends AbstractItemBuilder<MenuItem> {
@@ -81,6 +82,36 @@ public class MenuItem extends AbstractItemBuilder<MenuItem> {
         return this;
     }
 
+    /**
+     * Retrieves click actions associated to this item.
+     *
+     * @return a list of click actions associated to this item
+     */
+    public List<ClickAction> getClickActions() {
+        return clickActions;
+    }
+
+    /**
+     * Adds multiple click actions to this item.
+     *
+     * @param actions click actions that are executed when the player clicks on the item
+     * @return a reference to this object
+     */
+    public MenuItem addClickActions(ClickAction... actions) {
+        return addClickActions(Arrays.asList(actions));
+    }
+
+    /**
+     * Adds multiple click actions to this item.
+     *
+     * @param actions a list of click actions that are executed when the player clicks on the item
+     * @return a reference to this object
+     */
+    public MenuItem addClickActions(List<ClickAction> actions) {
+        this.clickActions.addAll(actions);
+        return this;
+    }
+
     @Override
     public MenuItem getThis() {
         return this;
@@ -88,7 +119,7 @@ public class MenuItem extends AbstractItemBuilder<MenuItem> {
 
     @Override
     public MenuItem clone() {
-        return new MenuItem(itemStack);
+        return new MenuItem(itemStack).addClickActions(getClickActions());
     }
 
     /**
