@@ -15,7 +15,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation 'com.github.1Math3w:menu-api:master-SNAPSHOT'
+    implementation 'com.github.1Math3w:menu-api:Tag'
 }
 ```
 
@@ -31,7 +31,7 @@ dependencies {
 <dependency>
     <groupId>com.github.1Math3w</groupId>
     <artifactId>menu-api</artifactId>
-    <version>master-SNAPSHOT</version>
+    <version>Tag</version>
 </dependency>
 ```
 
