@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 
 public abstract class PaginatedMenu extends Menu {
-    private int page = 1;
+    private int page = getFirstPage();
 
     /**
      * Creates a new PaginatedMenu of type {@link InventoryType#CHEST} with the specified size.
@@ -91,7 +91,7 @@ public abstract class PaginatedMenu extends Menu {
      * @param page the new page
      */
     public void setPage(int page) {
-        this.page = Math.max(1, page);
+        this.page = page < getFirstPage() ? getFirstPage() : Math.min(page, getLastPage());
         open();
     }
 
@@ -119,7 +119,7 @@ public abstract class PaginatedMenu extends Menu {
      * @return whether the menu has next page
      */
     public boolean hasNextPage() {
-        return getPage() >= getLastPage();
+        return getPage() < getLastPage();
     }
 
     /**
@@ -128,7 +128,7 @@ public abstract class PaginatedMenu extends Menu {
      * @return whether the menu has previous page
      */
     public boolean hasPreviousPage() {
-        return getPage() <= getFirstPage();
+        return getPage() > getFirstPage();
     }
 
     /**
