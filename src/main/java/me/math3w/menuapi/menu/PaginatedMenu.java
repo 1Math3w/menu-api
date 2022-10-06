@@ -1,6 +1,5 @@
 package me.math3w.menuapi.menu;
 
-import me.math3w.menuapi.itembuilder.ItemBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -35,14 +34,14 @@ public abstract class PaginatedMenu extends Menu {
      *
      * @return the slot where previous page item is going to be placed
      */
-    public abstract int getPreviousSlot();
+    protected abstract int getPreviousSlot();
 
     /**
      * Returns the slot of next page item.
      *
      * @return the slot where next page item is going to be placed
      */
-    public abstract int getNextSlot();
+    protected abstract int getNextSlot();
 
     /**
      * Sets the content of the menu.
@@ -50,8 +49,12 @@ public abstract class PaginatedMenu extends Menu {
      */
     @Override
     protected void setMenuItems() {
-        setItem(getPreviousSlot(), getPreviousPageItem());
-        setItem(getNextSlot(), getNextPageItem());
+        if (hasPreviousPage() || displayItemsWhenPageNotAvailable()) {
+            setItem(getPreviousSlot(), getPreviousPageItem());
+        }
+        if (hasNextPage() || displayItemsWhenPageNotAvailable()) {
+            setItem(getNextSlot(), getNextPageItem());
+        }
     }
 
     /**
@@ -90,5 +93,51 @@ public abstract class PaginatedMenu extends Menu {
     public void setPage(int page) {
         this.page = Math.max(1, page);
         open();
+    }
+
+    /**
+     * Returns the first page.
+     *
+     * @return the first page of the menu
+     */
+    public int getFirstPage() {
+        return 1;
+    }
+
+    /**
+     * Returns the last page.
+     *
+     * @return the last page of the menu
+     */
+    public int getLastPage() {
+        return Integer.MAX_VALUE;
+    }
+
+    /**
+     * Returns whether the menu has next page.
+     *
+     * @return whether the menu has next page
+     */
+    public boolean hasNextPage() {
+        return getPage() >= getLastPage();
+    }
+
+    /**
+     * Returns whether the menu has previous page.
+     *
+     * @return whether the menu has previous page
+     */
+    public boolean hasPreviousPage() {
+        return getPage() <= getFirstPage();
+    }
+
+    /**
+     * Should it display the previous or next page item when the page is not available.
+     * <p>Override the {@link PaginatedMenu#getLastPage()} method to work this properly when set to false</p>
+     *
+     * @return whether it should display the next/previous page item when the page doesn't exist
+     */
+    protected boolean displayItemsWhenPageNotAvailable() {
+        return false;
     }
 }
