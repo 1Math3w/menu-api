@@ -19,7 +19,7 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T>> {
     public AbstractItemBuilder(ItemStack itemStack) {
         this.itemStack = itemStack;
     }
-    
+
     public AbstractItemBuilder(Material type, int amount) {
         this(new ItemStack(type, amount));
     }
@@ -316,7 +316,7 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T>> {
      * @return a reference to this object
      */
     public T makeGlow(boolean glow) {
-        return addEnchantment(Enchantment.DURABILITY, 0).addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        return addEnchantment(Enchantment.DURABILITY, 1).addItemFlags(ItemFlag.HIDE_ENCHANTS);
     }
 
     /**
