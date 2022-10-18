@@ -316,7 +316,7 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T>> {
      * @return a reference to this object
      */
     public T makeGlow(boolean glow) {
-        return addEnchantment(Enchantment.DURABILITY, 1).addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        return addUnsafeEnchantment(Enchantment.DURABILITY, 1).addItemFlags(ItemFlag.HIDE_ENCHANTS);
     }
 
     /**
