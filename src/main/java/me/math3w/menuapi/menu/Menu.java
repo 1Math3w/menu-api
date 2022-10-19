@@ -14,8 +14,8 @@ import java.util.List;
 
 public abstract class Menu implements InventoryHolder {
     private final Player player;
-    private final MenuItem[] items;
     private final InventoryType type;
+    private MenuItem[] items;
     private Inventory inventory;
 
     /**
@@ -139,6 +139,7 @@ public abstract class Menu implements InventoryHolder {
      * Updates the menu
      */
     public void update() {
+        items = new MenuItem[type.getDefaultSize()];
         setMenuItems();
         inventory.setContents(convertToItemStacks(items));
     }
