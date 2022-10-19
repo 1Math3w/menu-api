@@ -139,7 +139,7 @@ public abstract class Menu implements InventoryHolder {
      * Updates the menu
      */
     public void update() {
-        items = new MenuItem[type.getDefaultSize()];
+        items = new MenuItem[this.items.length];
         setMenuItems();
         inventory.setContents(convertToItemStacks(items));
     }
