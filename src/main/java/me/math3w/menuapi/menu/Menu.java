@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -111,6 +112,15 @@ public abstract class Menu implements InventoryHolder {
         item.doClickActions(event);
 
         event.setCancelled(true);
+    }
+
+    /**
+     * Method that is executed when player closes this menu.
+     *
+     * @param event an event that triggers this method
+     */
+    public void handleClose(InventoryCloseEvent event) {
+
     }
 
     /**
