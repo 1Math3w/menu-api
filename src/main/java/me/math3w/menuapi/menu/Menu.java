@@ -114,6 +114,14 @@ public abstract class Menu implements InventoryHolder {
         event.setCancelled(true);
     }
 
+
+    /**
+     * Method that is executed when player opens this menu.
+     */
+    public void handleOpen() {
+
+    }
+
     /**
      * Method that is executed when player closes this menu.
      *
