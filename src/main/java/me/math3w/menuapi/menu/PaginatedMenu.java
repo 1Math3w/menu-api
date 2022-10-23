@@ -76,6 +76,13 @@ public abstract class PaginatedMenu extends Menu {
     }
 
     /**
+     * Opens the specific page to the player
+     */
+    public void open(int page) {
+        setPage(page);
+    }
+
+    /**
      * Returns the menu page.
      *
      * @return the current page of the menu
