@@ -310,12 +310,11 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T>> {
 
     /**
      * Makes item seem to be enchanted
-     * <p>Adds unbreaking enchantment level 0 and adds the hide enchant item flag</p>
+     * <p>Adds unbreaking enchantment level 1 and adds the hide enchant item flag</p>
      *
-     * @param glow whether the item should glow or not
      * @return a reference to this object
      */
-    public T makeGlow(boolean glow) {
+    public T makeGlow() {
         return addUnsafeEnchantment(Enchantment.DURABILITY, 1).addItemFlags(ItemFlag.HIDE_ENCHANTS);
     }
 
