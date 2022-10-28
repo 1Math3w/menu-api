@@ -160,7 +160,7 @@ public abstract class Menu implements InventoryHolder {
             }
 
             MenuAPI.getRefreshingMenus().put(getViewer().getUniqueId(), Bukkit.getScheduler().runTaskTimer(MenuAPI.getPlugin(), () -> {
-               if (!player.getOpenInventory().getTopInventory().getName().equals(getMenuName())) {
+               if (!player.getOpenInventory().getTitle().equals(getMenuName())) {
                    MenuAPI.getRefreshingMenus().get(getViewer().getUniqueId()).cancel();
                    MenuAPI.getRefreshingMenus().remove(getViewer().getUniqueId());
                    return;
