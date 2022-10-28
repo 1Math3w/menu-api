@@ -1,14 +1,18 @@
 package me.math3w.menuapi.menu;
 
+import me.math3w.menuapi.MenuAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitTask;
 
 public class MenuListeners implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
@@ -40,5 +44,10 @@ public class MenuListeners implements Listener {
 
         Menu menu = (Menu) holder;
         menu.handleClose(event);
+
+        if (MenuAPI.getRefreshingMenus().containsKey(event.getPlayer().getUniqueId())) {
+            MenuAPI.getRefreshingMenus().get(event.getPlayer().getUniqueId()).cancel();
+            MenuAPI.getRefreshingMenus().remove(event.getPlayer().getUniqueId());
+        }
     }
 }

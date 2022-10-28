@@ -1,5 +1,6 @@
 package me.math3w.menuapi.menu;
 
+import me.math3w.menuapi.MenuAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -151,6 +152,16 @@ public abstract class Menu implements InventoryHolder {
      */
     public void open() {
         player.openInventory(getInventory());
+
+        if (updateTime() > 0) {
+            if (MenuAPI.getRefreshingMenus().containsKey(getViewer().getUniqueId())) {
+                getViewer().sendMessage("Stop updating");
+                MenuAPI.getRefreshingMenus().get(getViewer().getUniqueId()).cancel();
+                MenuAPI.getRefreshingMenus().remove(getViewer().getUniqueId());
+            }
+
+            MenuAPI.getRefreshingMenus().put(getViewer().getUniqueId(), Bukkit.getScheduler().runTaskTimer(MenuAPI.getPlugin(), this::update, updateTime(), updateTime()));
+        }
     }
 
     /**
@@ -196,5 +207,15 @@ public abstract class Menu implements InventoryHolder {
      */
     public Player getViewer() {
         return player;
+    }
+
+    /**
+     * Returns the time that it should take to update the menu.
+     * Set to 0 if the menu shouldn't be updated.
+     *
+     * @return time in ticks
+     */
+    public int updateTime() {
+        return 0;
     }
 }
