@@ -37,6 +37,6 @@ public class ItemBuilder extends AbstractItemBuilder<ItemBuilder> {
     }
 
     public ItemBuilder clone() {
-        return new ItemBuilder(itemStack);
+        return new ItemBuilder(itemStack.clone());
     }
 }

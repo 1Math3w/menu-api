@@ -119,7 +119,7 @@ public class MenuItem extends AbstractItemBuilder<MenuItem> {
 
     @Override
     public MenuItem clone() {
-        return new MenuItem(itemStack).addClickActions(getClickActions());
+        return new MenuItem(itemStack.clone()).addClickActions(getClickActions());
     }
 
     /**

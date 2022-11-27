@@ -68,6 +68,6 @@ public class HeadBuilder extends AbstractItemBuilder<HeadBuilder> {
 
     @Override
     public HeadBuilder clone() {
-        return new HeadBuilder(itemStack);
+        return new HeadBuilder(itemStack.clone());
     }
 }
