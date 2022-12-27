@@ -19,6 +19,7 @@ public abstract class Menu implements InventoryHolder {
     private final InventoryType type;
     private MenuItem[] items;
     private Inventory inventory;
+    private boolean allowClicks = true;
 
     /**
      * Creates a new Menu of type {@link InventoryType#CHEST} with the specified size.
@@ -107,6 +108,10 @@ public abstract class Menu implements InventoryHolder {
      * @param event an event that triggers this method
      */
     public void handleMenu(InventoryClickEvent event) {
+        if (!allowClicks) {
+            event.setCancelled(true);
+        }
+
         if (items[event.getSlot()] == null) return;
 
         MenuItem item = items[event.getSlot()];
@@ -223,5 +228,12 @@ public abstract class Menu implements InventoryHolder {
      */
     public int updateTime() {
         return 0;
+    }
+
+    /**
+     * Cancels the click event on all items
+     */
+    public void disallowClicks() {
+        this.allowClicks = false;
     }
 }
