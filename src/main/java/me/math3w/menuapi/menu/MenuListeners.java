@@ -22,13 +22,12 @@ public class MenuListeners implements Listener {
         Inventory inventory = event.getView().getTopInventory();
         ItemStack item = event.getCurrentItem();
 
-        if (item == null) return;
-
         InventoryHolder holder = event.getInventory().getHolder();
         if (!(holder instanceof Menu)) return;
 
         event.setCancelled(true);
 
+        if (item == null) return;
         if (event.getClickedInventory() != inventory) return;
 
         Menu menu = (Menu) holder;
